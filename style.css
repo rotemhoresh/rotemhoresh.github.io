@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+div {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 5em;
+}
+
+.disappear {
+  opacity: 0;
+}
