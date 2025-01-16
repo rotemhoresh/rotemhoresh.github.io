@@ -104,3 +104,19 @@ li:hover::after {
 li + li {
   margin-left: 30px;
 }
+
+/*
+ * SECTIONS
+ */
+
+section {
+  display: none;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50px;
+}
+
+section.appear {
+  display: block;
+}
