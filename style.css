@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://www.nerdfonts.com/assets/css/webfont.css");
 
 * {
   padding: 0;
@@ -9,6 +10,8 @@
 
 body {
   font-family: "JetBrains Mono", monospace;
+  text-transform: uppercase;
+  font-size: 0.9em;
   color: black;
   background-color: white;
 }
@@ -16,6 +19,83 @@ body {
 body.dark {
   color: white;
   background-color: black;
+}
+
+.escaped {
+  text-transform: none;
+}
+
+pre {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  text-transform: inherit;
+  border: none;
+  background: transparent;
+}
+
+a:not(.outside),
+button {
+  padding: 3px 2px;
+  position: relative;
+}
+
+a:not(.outside):before,
+a:not(.outside)::after
+/* button::before, */
+/* button::after */ {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+a:not(.outside)::before
+/* button::before */ {
+  content: "[";
+  right: 100%;
+}
+
+a:not(.outside)::after
+/* button::after */ {
+  content: "]";
+  left: 100%;
+}
+
+a:not(.outside).focused::before,
+a:not(.outside).focused::after,
+a:not(.outside):hover::before,
+a:not(.outside):hover::after
+/* button.focused::before, */
+/* button.focused::after, */
+/* button:hover::before, */
+/* button:hover::after */ {
+  display: inline;
+}
+
+p + p {
+  margin-top: 15px;
+}
+
+kbd {
+  font-family: inherit;
+  font-size: 0.8em;
+  display: block;
+}
+
+kbd::before {
+  content: "[";
+}
+
+kbd::after {
+  content: "]";
 }
 
 #container {
@@ -30,6 +110,7 @@ h1#hero {
   font-weight: 700;
   font-size: 5em;
   display: none;
+  text-transform: none;
 }
 
 h1#hero.appear {
@@ -45,26 +126,16 @@ button#theme {
   position: fixed;
   bottom: 80px;
   right: 80px;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  border: none;
-  background-color: black;
-  cursor: pointer;
+  color: inherit;
 }
 
-.dark button#theme {
-  background-color: white;
+button#theme::before {
+  content: "L1GH7";
+  display: block;
 }
 
-button#theme:hover,
-button#theme:active {
-  background-color: black;
-}
-
-.dark button#theme:hover,
-.dark button#theme:active {
-  background-color: white;
+.dark button#theme::before {
+  content: "D4RK";
 }
 
 footer {
@@ -79,42 +150,11 @@ ul {
   list-style: none;
 }
 
-li {
+footer li {
   display: inline-block;
-  text-transform: uppercase;
-  position: relative;
 }
 
-li > a {
-  padding: 3px 2px;
-  color: inherit;
-  text-decoration: none;
-}
-
-li::before,
-li::after {
-  display: none;
-  position: absolute;
-}
-
-li::before {
-  content: "[";
-  right: 100%;
-}
-
-li::after {
-  content: "]";
-  left: 100%;
-}
-
-li.focused::before,
-li.focused::after,
-li:hover::before,
-li:hover::after {
-  display: inline;
-}
-
-li + li {
+footer li + li {
   margin-left: 30px;
 }
 
@@ -125,11 +165,27 @@ li + li {
 section {
   display: none;
   position: fixed;
-  padding: 50px;
+  padding: 150px 300px;
   width: 100vw;
   height: 100vh;
 }
 
 section.appear {
   display: block;
+}
+
+section .back-home {
+  position: absolute;
+  bottom: 200px;
+  left: 300px;
+}
+
+section > ul {
+  margin: 40px 0;
+}
+
+section#help > pre {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }

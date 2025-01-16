@@ -1,3 +1,11 @@
+/* -------------.
+ *              |
+ *   WIP NOTE   |
+ *              |
+ */ // ---------`
+
+alert("This site is a Work In Progress");
+
 /* --------------------.
  *                     |
  *   CONTENT MANAGER   |
@@ -76,12 +84,14 @@ registry.add("me", "section#me", ["appear"]);
 registry.add("projects", "section#projects", ["appear"]);
 registry.add("interests", "section#interests", ["appear"]);
 
-registry.add("me", "li#me", ["focused"]);
-registry.add("projects", "li#projects", ["focused"]);
-registry.add("interests", "li#interests", ["focused"]);
+registry.add("help", "section#help", ["appear"]);
+
+registry.add("me", "li#me > a", ["focused"]);
+registry.add("projects", "li#projects > a", ["focused"]);
+registry.add("interests", "li#interests > a", ["focused"]);
 
 const initialHash = window.location.hash.substring(1);
-registry.handleHashChange("", initialHash);
+registry.handleHashChange(initialHash);
 
 window.addEventListener("hashchange", (e) => {
   const curr = e.newURL.substring(e.newURL.indexOf("#") + 1);
@@ -108,4 +118,73 @@ setInterval(() => {
 
 const theme = document.getElementById("theme");
 
-theme.addEventListener("click", () => document.body.classList.toggle("dark"));
+theme.addEventListener("click", toggleTheme);
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
+
+/* ----------------.
+ *                 |
+ *   FULL SCREEN   |
+ *                 |
+ */ // ------------`
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch((err) => {
+      console.error(`Error attempting to enable fullscreen: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen().catch((err) => {
+      console.error(`Error attempting to exit fullscreen: ${err.message}`);
+    });
+  }
+}
+
+/* -----------------.
+ *                  |
+ *   KEY BINDINGS   |
+ *                  |
+ */ // -------------`
+
+document.addEventListener("keydown", (e) => {
+  switch (e.key) {
+    case "t":
+      toggleTheme();
+      break;
+    case "f":
+      toggleFullscreen();
+      break;
+    case "m":
+      if (e.ctrlKey) {
+        window.location.hash = "me";
+      } else {
+        return;
+      }
+      break;
+    case "p":
+      if (e.ctrlKey) {
+        window.location.hash = "projects";
+      } else {
+        return;
+      }
+      break;
+    case "i":
+      if (e.ctrlKey) {
+        window.location.hash = "interests";
+      } else {
+        return;
+      }
+      break;
+    case "?":
+      window.location.hash = "help";
+      break;
+    case "Escape":
+      window.location.hash = "";
+      break;
+    default:
+      return;
+  }
+  e.preventDefault();
+});
