@@ -1,7 +1,3 @@
-document
-  .querySelectorAll("ul > li")
-  .forEach((e) => e.addEventListener("click", () => alert("WIP")));
-
 /* --------------------.
  *                     |
  *   CONTENT MANAGER   |
@@ -52,47 +48,44 @@ class Registry {
 
   /**
    * @method
-   * @private
-   * @param {string} hash
-   * @param {boolean} mode
+   * @public
+   * @param {string} currHash
    */
-  toggleHashClasses(hash, mode) {
-    console.log(hash);
-    const selectors = this.map.get(hash);
-    if (selectors !== undefined) {
-      console.log(selectors);
+  handleHashChange(currHash) {
+    for (const [hash, selectors] of this.map) {
+      let mode = Registry.REMOVE_MODE;
+      if (hash === currHash) {
+        console.log(`${hash} === ${currHash}`);
+        mode = Registry.ADD_MODE;
+      }
+
       for (const [selector, classes] of selectors) {
-        console.log(selector);
-        console.log(classes);
         document.querySelectorAll(selector).forEach((elem) => {
-          console.log(elem);
           elem.classList.toggle(...classes, mode);
         });
       }
     }
   }
-
-  /**
-   * @method
-   * @public
-   * @param {string} prev
-   * @param {string} curr
-   */
-  handleHashChange(prev, curr) {
-    console.log(`prev: ${prev}, curr: ${curr}`);
-    this.toggleHashClasses(prev, Registry.REMOVE_MODE);
-    this.toggleHashClasses(curr, Registry.ADD_MODE);
-  }
 }
 
 const registry = new Registry();
 
+registry.add("", "h1#hero", ["appear"]);
+
 registry.add("me", "section#me", ["appear"]);
+registry.add("projects", "section#projects", ["appear"]);
+registry.add("interests", "section#interests", ["appear"]);
+
+registry.add("me", "li#me", ["focused"]);
+registry.add("projects", "li#projects", ["focused"]);
+registry.add("interests", "li#interests", ["focused"]);
+
+const initialHash = window.location.hash.substring(1);
+registry.handleHashChange("", initialHash);
 
 window.addEventListener("hashchange", (e) => {
-  const prev = e.oldURL.substring(e.oldURL.indexOf("#") + 1);
   const curr = e.newURL.substring(e.newURL.indexOf("#") + 1);
-  registry.handleHashChange(prev, curr);
+  registry.handleHashChange(curr);
 });
 
 /* --------------------.
