@@ -6,6 +6,16 @@
 
 alert("This site is a Work In Progress");
 
+/* ----------------.
+ *                 |
+ *   VIMIUM NOTE   |
+ *                 |
+ */ // ------------`
+
+alert(
+  "This site has key bindings (try `?`). If you have Vimium, you should turn it of for this site",
+);
+
 /* --------------------.
  *                     |
  *   CONTENT MANAGER   |
@@ -31,7 +41,7 @@ class Registry {
 
   /**
    * @private
-   * @type {Map<String, Map<String, Array<String>>>}
+   * @type {Map.<String, Map.<String, Array.<String>>>}
    */
   map;
 
