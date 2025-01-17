@@ -51,6 +51,17 @@ class Registry {
 
   /**
    * @method
+   * @public
+   * @param {string} hash
+   * @returns {boolean}
+   */
+  hasHash(hash) {
+    return this.map.has(hash);
+  }
+
+  /**
+   * @method
+   * @public
    * @param {string} hash
    * @param {string} selector
    * @param {Array.<string>} classes
@@ -96,17 +107,62 @@ registry.add("interests", "section#interests", ["appear"]);
 
 registry.add("help", "section#help", ["appear"]);
 
+registry.add("404", "section#code-404", ["appear"]);
+
 registry.add("me", "li#me > a", ["focused"]);
 registry.add("projects", "li#projects > a", ["focused"]);
 registry.add("interests", "li#interests > a", ["focused"]);
 
-const initialHash = window.location.hash.substring(1);
-registry.handleHashChange(initialHash);
-
 window.addEventListener("hashchange", (e) => {
   const curr = e.newURL.substring(e.newURL.indexOf("#") + 1);
-  registry.handleHashChange(curr);
+  if (registry.hasHash(curr)) {
+    registry.handleHashChange(curr);
+  } else {
+    registry.handleHashChange("404");
+  }
 });
+
+/* ------------------------.
+ *                         |
+ *   HANDLE INITIAL HASH   |
+ *                         |
+ */ // --------------------`
+
+const initialHash = window.location.hash;
+window.location.hash = "#404";
+window.location.hash = initialHash;
+
+/* ----------------.
+ *                 |
+ *   404 BUBBLES   |
+ *                 |
+ */ // ------------`
+
+const bubbles = document.getElementsByClassName("code-404");
+
+for (const bubble of bubbles) {
+  bubble.style.fontSize = "0em";
+
+  const interval = randomInt(400, 5000);
+  setInterval(() => {
+    const x = randomInt(20, 80);
+    const y = randomInt(20, 80);
+    const fontSize = randomInt(1, 8);
+    bubble.style.left = `${x}%`;
+    bubble.style.top = `${y}%`;
+    bubble.style.fontSize = `${fontSize}em`;
+  }, interval);
+}
+
+/**
+ * @function
+ * @param {number} min
+ * @param {number} max
+ * @returns {number}
+ */
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 /* --------------------.
  *                     |

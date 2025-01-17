@@ -189,3 +189,12 @@ section#help > pre {
   left: 50%;
   transform: translateX(-50%);
 }
+
+/*
+ * 404
+ */
+
+.code-404 {
+  position: absolute;
+  transition: all 0.3s;
+}
