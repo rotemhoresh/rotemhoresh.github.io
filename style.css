@@ -6,19 +6,24 @@
   margin: 0;
   box-sizing: border-box;
   cursor: default;
+  color: inherit;
+  background-color: inherit;
+}
+
+html {
+  color: black;
+  background-color: white;
+}
+
+.dark {
+  color: white;
+  background-color: black;
 }
 
 body {
   font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   font-size: 0.9em;
-  color: black;
-  background-color: white;
-}
-
-body.dark {
-  color: white;
-  background-color: black;
 }
 
 .escaped {

@@ -187,7 +187,9 @@ const theme = document.getElementById("theme");
 theme.addEventListener("click", toggleTheme);
 
 function toggleTheme() {
-  document.body.classList.toggle("dark");
+  document.documentElement.classList.toggle("dark");
+  const dark = document.documentElement.classList.contains("dark");
+  localStorage.theme = dark ? "dark" : "light";
 }
 
 /* ----------------.
