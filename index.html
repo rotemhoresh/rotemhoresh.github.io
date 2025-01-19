@@ -10,8 +10,10 @@
     <script>
       document.documentElement.classList.toggle(
         "dark",
-        localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-      )
+        localStorage.theme === "dark" ||
+          (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches),
+      );
     </script>
   </head>
   <body>
@@ -19,25 +21,17 @@
       <section id="me">
         <p>Hi, I'm Rotem Horesh.</p>
 
-        <p>
-        <pre class="escaped">
-CURRENTLY LIKING     Rust  Hyprland  NixOS
-                     Kitty  Nix  Helix
-                     Go  Fish  Pizza
-                     && more... </pre>
-        </p>
-        <p>
-        <pre class="escaped">
-CURRENTLY LEARNING   Haskell
-                     && more... </pre>
-        </p>
-
         <ul>
           <li>
-            <a class="outside" href="https://github.com/rotmh"><i class="nf nf-md-github"></i> GitHub <span class="escaped">@rotmh</span></a>
+            <a class="outside" href="https://github.com/rotmh">
+              <i class="nf nf-md-github"></i> GitHub
+              <span class="escaped">@rotmh</span>
+            </a>
           </li>
           <li>
-            <a class="outside" href="mailto:horesh.rotem@gmail.com"><i class="nf nf-md-email"></i> EMAIL</a>
+            <a class="outside" href="mailto:horesh.rotem@gmail.com">
+              <i class="nf nf-md-email"></i> EMAIL
+            </a>
           </li>
         </ul>
 
@@ -71,12 +65,7 @@ CURRENTLY LEARNING   Haskell
         <span class="code-404">4</span>
         <span class="code-404">0</span>
         <span class="code-404">4</span>
-        <!-- <span class="code-404">4</span> -->
-        <!-- <span class="code-404">0</span> -->
-        <!-- <span class="code-404">4</span> -->
-        <!-- <span class="code-404">4</span> -->
-        <!-- <span class="code-404">0</span> -->
-        <!-- <span class="code-404">4</span> -->
+
         <div class="back-home">
           <a href="#">back home</a>
           <kbd>Esc</kbd>
@@ -84,7 +73,7 @@ CURRENTLY LEARNING   Haskell
       </section>
 
       <section id="help">
-<pre>
+        <pre>
 <kbd>C-m</kbd>      Go to the `me` page
 <kbd>C-p</kbd>      Go to the `projects` page
 <kbd>C-i</kbd>      Go to the `interests` page
@@ -95,7 +84,8 @@ CURRENTLY LEARNING   Haskell
 <kbd>f</kbd>      Toggle Fullscreen
 
 <kbd>?</kbd>      Show this help page
-</pre>
+        </pre>
+
         <div class="back-home">
           <a href="#">back home</a>
           <kbd>Esc</kbd>
@@ -104,16 +94,28 @@ CURRENTLY LEARNING   Haskell
 
       <h1 id="hero">Hi<span id="cursor">_</span></h1>
 
-      <button id="theme">theme <kbd>t</kbd></button>
+      <button id="theme">
+        theme
+        <kbd>t</kbd>
+      </button>
 
       <footer>
-        <ul>
-          <li id="me"><a href="#me">me</a><kbd>C-m</kbd></li>
-          <li id="projects"><a href="#projects">projects</a><kbd>C-p</kbd></li>
-          <li id="interests">
-            <a href="#interests">interests</a><kbd>C-i</kbd>
-          </li>
-        </ul>
+        <nav>
+          <ul>
+            <li id="me">
+              <a href="#me">me</a>
+              <kbd>C-m</kbd>
+            </li>
+            <li id="projects">
+              <a href="#projects">projects</a>
+              <kbd>C-p</kbd>
+            </li>
+            <li id="interests">
+              <a href="#interests">interests</a>
+              <kbd>C-i</kbd>
+            </li>
+          </ul>
+        </nav>
       </footer>
     </div>
 

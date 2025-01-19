@@ -4,7 +4,7 @@
  *              |
  */ // ---------`
 
-alert("This site is a Work In Progress");
+// alert("This site is a Work In Progress");
 
 /* ----------------.
  *                 |
@@ -12,9 +12,9 @@ alert("This site is a Work In Progress");
  *                 |
  */ // ------------`
 
-alert(
-  "This site has key bindings (try `?`). If you have Vimium, you should turn it of for this site",
-);
+// alert(
+//   "This site has key bindings (try `?`). If you have Vimium, you should turn it of for this site",
+// );
 
 /* --------------------.
  *                     |
